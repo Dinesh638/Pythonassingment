@@ -20,8 +20,6 @@ import sys
 # 		for i in range(2,num):
 # 			if num%i == 0:
 # 				return f"{num} is not prime number"
-# 			else:
-# 				return f"{num} is prime number"
 # 		else:
 # 			return f"{num} is not prime number"
 # 	else:
@@ -104,4 +102,6 @@ import sys
 # finally:
 # 	f_write.close()	
 # 	f.close()
+
+##6
 
