@@ -1,4 +1,4 @@
-import sys,average,pickle,random,os
+import sys,average,pickle,random,os,datetime
 
 #####Assing-3
 ##1
@@ -103,7 +103,7 @@ import sys,average,pickle,random,os
 # 	f_write.close()	
 # 	f.close()
 
-##6
+##7
 
 class myexcept(Exception):
 	
@@ -120,8 +120,7 @@ class Student:
 
 	stud=[]
 
-	def __init__(self,roll_no,name,contact,dob,gender,marks):
-		print("Constructor called...")
+	def __init__(self,roll_no,name,contact,dob,gender,marks):		
 		Student.check_roll_no(name,roll_no)
 		self.id=roll_no
 		self.name=name
@@ -140,7 +139,7 @@ class Student:
 		for i in range(0,len(self.marks)):
 			s+=credit[i]*self.marks[i]
 		self.spi=s//sum(credit)	
-		print(self.spi)		
+		# print(self.spi)		
 		return self.spi
 	
 	def search_student(self,name):
@@ -154,6 +153,11 @@ class Student:
 	def show(self):			
 			print(f"Name : {self.name} , Roll_NO : {self.id} , Contact : {self.contact}, Date of Birth : {self.dob}, Gender : {self.gender} , Marks : {self.marks}")
 
+
+	def get_age(self):
+		d=self.dob.split("-")
+		c=datetime.datetime.now()
+		return f"Age : {c.year-int(d[len(d)-1])}"
 
 	def get_id(self):
 		return self.id
@@ -192,7 +196,7 @@ class Student:
 	def set_marks(self,m):
 		self.marks=m	
     
-
+	
 
 	@classmethod
 	def check_roll_no(cls,name,num):
@@ -216,9 +220,10 @@ def write_pass(stud):
 
 
 try:
-	print(os.getcwd())
+	
 	dinesh=Student(46,"Dinesh","8490086339","25-10-1997","Male",[45,55,60,70])
 	dinesh_copy=Student(47,"Naveen paul","8490086639","25-10-1997","Male",[5,55,60,70])
+	print(dinesh.get_age())
 	print(average.cal_avg(dinesh,dinesh.marks))
 	dinesh.cal_spi()
 	dinesh_copy.cal_spi()	
@@ -236,3 +241,8 @@ except Exception as e:
 	
 finally:	
 	pass
+
+
+##8
+
+
