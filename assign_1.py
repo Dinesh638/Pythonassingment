@@ -1,5 +1,5 @@
-import sys
-import average
+import sys,average,pickle,random,os
+
 #####Assing-3
 ##1
 # file=open(sys.argv[1]+".txt","r")
@@ -115,6 +115,7 @@ class myexcept(Exception):
 	def __str__(self):
 		return f"Student {self.name}'s {self.msg}"
 
+
 class Student:
 
 	stud=[]
@@ -134,22 +135,25 @@ class Student:
 		self.stud.append(self)
 
 	def cal_spi(self):
-		credit=[5]*(len(self.marks))
+		credit=[random.randint(4,9)]*len(self.marks)
 		s=0
+		# print(credit)
 		for i in range(0,len(self.marks)):
 			s+=credit[i]*self.marks[i]
-		self.spi=s//sum(credit)			
+		self.spi=s//sum(credit)	
+		print(self.spi)		
 		return self.spi
 	
 	def search_student(self,name):
 		for i in self.stud:
-			if name == i.name:				
-				self.show(i)
+			if name.strip().lower() == i.name.strip().lower():	
+				print(f"User => {name} found ")			
+				i.show()
 		else:
 			print(f"User => {name} does't exists ")	
 
-	def show(self,obj):			
-			print(f"Name : {obj.name} , Roll_NO : {obj.id} , Contact : {obj.contact}, Date of Birth : {obj.dob}, Gender : {obj.gender} , Marks : {obj.marks}")
+	def show(self):			
+			print(f"Name : {self.name} , Roll_NO : {self.id} , Contact : {self.contact}, Date of Birth : {self.dob}, Gender : {self.gender} , Marks : {self.marks}")
 
 
 	def get_id(self):
@@ -203,13 +207,34 @@ class Student:
 
 			return		
 
+
+def write_pass(stud):
+	p=[]
+	with open(os.getcwd()+"/pass.txt","wb") as f:
+		for i in stud:
+			if i.spi>=50:
+				p.append(i)
+
+		pickle.dump(p,f)		
+
+
 try:
+	print(os.getcwd())
 	dinesh=Student(46,"Dinesh","8490086339","25-10-1997","Male",[45,55,60,70])
-	dinesh_copy=Student(46,"Naveen paul","8490086639","25-10-1997","Male",[5,55,60,70])
+	dinesh_copy=Student(47,"Naveen paul","8490086639","25-10-1997","Male",[5,55,60,70])
 	print(average.cal_avg(dinesh,dinesh.marks))
 	dinesh.cal_spi()
 	dinesh_copy.cal_spi()	
-	dinesh.search_student("hello")
+	dinesh.search_student("Naveen paul")
+	with open(os.getcwd()+"/student.txt","wb") as f:
+		pickle.dump(Student.stud,f)		
+	
+	with open(os.getcwd()+"/student.txt","rb") as f:		
+		obj=pickle.load(f)
+		# print(obj)
+		for i in obj:
+			i.show()
+	write_pass(Student.stud)		
 except Exception as e:
 	print(e)
 	
