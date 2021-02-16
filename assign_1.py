@@ -136,8 +136,7 @@ class Student:
 
 	def cal_spi(self):
 		credit=[random.randint(4,9)]*len(self.marks)
-		s=0
-		# print(credit)
+		s=0		
 		for i in range(0,len(self.marks)):
 			s+=credit[i]*self.marks[i]
 		self.spi=s//sum(credit)	
@@ -197,9 +196,7 @@ class Student:
 
 	@classmethod
 	def check_roll_no(cls,name,num):
-		for i in cls.stud:
-			# print("hello")
-			# print(i.id)
+		for i in cls.stud:			
 			if num == i.id:
 				print(f"{i.name} => {i.id}")
 				raise myexcept(name)
@@ -230,15 +227,12 @@ try:
 		pickle.dump(Student.stud,f)		
 	
 	with open(os.getcwd()+"/student.txt","rb") as f:		
-		obj=pickle.load(f)
-		# print(obj)
+		obj=pickle.load(f)		
 		for i in obj:
 			i.show()
 	write_pass(Student.stud)		
 except Exception as e:
 	print(e)
 	
-finally:
-	# for i in Student.stud:
-	# 	print(i.contact)
+finally:	
 	pass
