@@ -1,5 +1,5 @@
 import sys
-
+import average
 #####Assing-3
 ##1
 # file=open(sys.argv[1]+".txt","r")
@@ -105,3 +105,115 @@ import sys
 
 ##6
 
+class myexcept(Exception):
+	
+	def __init__(self,name,msg="Roll number should be unique"):			
+		self.name=name
+		self.msg=msg	
+		super().__init__(self.msg)	
+
+	def __str__(self):
+		return f"Student {self.name}'s {self.msg}"
+
+class Student:
+
+	stud=[]
+
+	def __init__(self,roll_no,name,contact,dob,gender,marks):
+		print("Constructor called...")
+		Student.check_roll_no(name,roll_no)
+		self.id=roll_no
+		self.name=name
+		self.contact=contact
+		self.dob=dob
+		self.gender=gender
+		self.marks=marks		
+		self.add_stud()
+	
+	def add_stud(self):
+		self.stud.append(self)
+
+	def cal_spi(self):
+		credit=[5]*(len(self.marks))
+		s=0
+		for i in range(0,len(self.marks)):
+			s+=credit[i]*self.marks[i]
+		self.spi=s//sum(credit)			
+		return self.spi
+	
+	def search_student(self,name):
+		for i in self.stud:
+			if name == i.name:				
+				self.show(i)
+		else:
+			print(f"User => {name} does't exists ")	
+
+	def show(self,obj):			
+			print(f"Name : {obj.name} , Roll_NO : {obj.id} , Contact : {obj.contact}, Date of Birth : {obj.dob}, Gender : {obj.gender} , Marks : {obj.marks}")
+
+
+	def get_id(self):
+		return self.id
+	
+	def set_id(self,id):
+		self.id=id
+
+	def get_name(self):
+		return self.name
+
+	def set_name(self,n):
+		self.name=n
+	
+
+	def get_contact(self):
+		return self.contact
+
+	def set_contact(self,c):
+		self.contact=c
+
+	def get_dob(self):
+		return self.dob
+	
+	def set_dob(self,d):
+		self.dob=d
+
+	def get_gender(self):
+		return self.gender
+
+	def set_gender(self,g):
+		self.gender=g
+
+	def get_marks(self):
+		return self.marks
+
+	def set_marks(self,m):
+		self.marks=m	
+    
+
+
+	@classmethod
+	def check_roll_no(cls,name,num):
+		for i in cls.stud:
+			# print("hello")
+			# print(i.id)
+			if num == i.id:
+				print(f"{i.name} => {i.id}")
+				raise myexcept(name)
+		else:
+
+			return		
+
+try:
+	dinesh=Student(46,"Dinesh","8490086339","25-10-1997","Male",[45,55,60,70])
+	dinesh_copy=Student(46,"Naveen paul","8490086639","25-10-1997","Male",[5,55,60,70])
+	print(average.cal_avg(dinesh,dinesh.marks))
+	dinesh.cal_spi()
+	dinesh_copy.cal_spi()	
+	dinesh.search_student("hello")
+except Exception as e:
+	print(e)
+	
+finally:
+	# for i in Student.stud:
+	# 	print(i.contact)
+	pass
