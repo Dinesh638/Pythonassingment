@@ -105,144 +105,345 @@ import sys,average,pickle,random,os,datetime
 
 ##7
 
-class myexcept(Exception):
+# class myexcept(Exception):
 	
-	def __init__(self,name,msg="Roll number should be unique"):			
-		self.name=name
-		self.msg=msg	
-		super().__init__(self.msg)	
+# 	def __init__(self,name,msg="Roll number should be unique"):			
+# 		self.name=name
+# 		self.msg=msg	
+# 		super().__init__(self.msg)	
 
-	def __str__(self):
-		return f"Student {self.name}'s {self.msg}"
+# 	def __str__(self):
+# 		return f"Student {self.name}'s {self.msg}"
 
 
-class Student:
+# class Student:
 
-	stud=[]
+# 	stud=[]
 
-	def __init__(self,roll_no,name,contact,dob,gender,marks):		
-		Student.check_roll_no(name,roll_no)
-		self.id=roll_no
-		self.name=name
-		self.contact=contact
-		self.dob=dob
-		self.gender=gender
-		self.marks=marks		
-		self.add_stud()
+# 	def __init__(self,roll_no,name,contact,dob,gender,marks):		
+# 		Student.check_roll_no(name,roll_no)
+# 		self.id=roll_no
+# 		self.name=name
+# 		self.contact=contact
+# 		self.dob=dob
+# 		self.gender=gender
+# 		self.marks=marks		
+# 		self.add_stud()
 	
-	def add_stud(self):
-		self.stud.append(self)
+# 	def add_stud(self):
+# 		self.stud.append(self)
 
-	def cal_spi(self):
-		credit=[random.randint(4,9)]*len(self.marks)
-		s=0		
-		for i in range(0,len(self.marks)):
-			s+=credit[i]*self.marks[i]
-		self.spi=s//sum(credit)	
-		# print(self.spi)		
-		return self.spi
+# 	def cal_spi(self):
+# 		credit=[random.randint(4,9)]*len(self.marks)
+# 		s=0		
+# 		for i in range(0,len(self.marks)):
+# 			s+=credit[i]*self.marks[i]
+# 		self.spi=s//sum(credit)	
+# 		# print(self.spi)		
+# 		return self.spi
 	
-	def search_student(self,name):
-		for i in self.stud:
-			if name.strip().lower() == i.name.strip().lower():	
-				print(f"User => {name} found ")			
-				i.show()
-		else:
-			print(f"User => {name} does't exists ")	
+# 	def search_student(self,name):
+# 		for i in self.stud:
+# 			if name.strip().lower() == i.name.strip().lower():	
+# 				print(f"User => {name} found ")			
+# 				i.show()
+# 		else:
+# 			print(f"User => {name} does't exists ")	
 
-	def show(self):			
-			print(f"Name : {self.name} , Roll_NO : {self.id} , Contact : {self.contact}, Date of Birth : {self.dob}, Gender : {self.gender} , Marks : {self.marks}")
+# 	def show(self):			
+# 			print(f"Name : {self.name} , Roll_NO : {self.id} , Contact : {self.contact}, Date of Birth : {self.dob}, Gender : {self.gender} , Marks : {self.marks}")
 
 
-	def get_age(self):
-		d=self.dob.split("-")
-		c=datetime.datetime.now()
-		return f"Age : {c.year-int(d[len(d)-1])}"
+# 	def get_age(self):
+# 		d=self.dob.split("-")
+# 		c=datetime.datetime.now()
+# 		return f"Age : {c.year-int(d[len(d)-1])}"
 
-	def get_id(self):
-		return self.id
+# 	def get_id(self):
+# 		return self.id
 	
-	def set_id(self,id):
-		self.id=id
+# 	def set_id(self,id):
+# 		self.id=id
 
-	def get_name(self):
-		return self.name
+# 	def get_name(self):
+# 		return self.name
 
-	def set_name(self,n):
-		self.name=n
+# 	def set_name(self,n):
+# 		self.name=n
 	
 
-	def get_contact(self):
-		return self.contact
+# 	def get_contact(self):
+# 		return self.contact
 
-	def set_contact(self,c):
-		self.contact=c
+# 	def set_contact(self,c):
+# 		self.contact=c
 
-	def get_dob(self):
-		return self.dob
+# 	def get_dob(self):
+# 		return self.dob
 	
-	def set_dob(self,d):
-		self.dob=d
+# 	def set_dob(self,d):
+# 		self.dob=d
 
-	def get_gender(self):
-		return self.gender
+# 	def get_gender(self):
+# 		return self.gender
 
-	def set_gender(self,g):
-		self.gender=g
+# 	def set_gender(self,g):
+# 		self.gender=g
 
-	def get_marks(self):
-		return self.marks
+# 	def get_marks(self):
+# 		return self.marks
 
-	def set_marks(self,m):
-		self.marks=m	
+# 	def set_marks(self,m):
+# 		self.marks=m	
     
 	
 
-	@classmethod
-	def check_roll_no(cls,name,num):
-		for i in cls.stud:			
-			if num == i.id:
-				print(f"{i.name} => {i.id}")
-				raise myexcept(name)
-		else:
+# 	@classmethod
+# 	def check_roll_no(cls,name,num):
+# 		for i in cls.stud:			
+# 			if num == i.id:
+# 				print(f"{i.name} => {i.id}")
+# 				raise myexcept(name)
+# 		else:
 
-			return		
-
-
-def write_pass(stud):
-	p=[]
-	with open(os.getcwd()+"/pass.txt","wb") as f:
-		for i in stud:
-			if i.spi>=50:
-				p.append(i)
-
-		pickle.dump(p,f)		
+# 			return		
 
 
-try:
+# def write_pass(stud):
+# 	p=[]
+# 	with open(os.getcwd()+"/pass.txt","wb") as f:
+# 		for i in stud:
+# 			if i.spi>=50:
+# 				p.append(i)
+
+# 		pickle.dump(p,f)		
+
+
+# try:
 	
-	dinesh=Student(46,"Dinesh","8490086339","25-10-1997","Male",[45,55,60,70])
-	dinesh_copy=Student(47,"Naveen paul","8490086639","25-10-1997","Male",[5,55,60,70])
-	print(dinesh.get_age())
-	print(average.cal_avg(dinesh,dinesh.marks))
-	dinesh.cal_spi()
-	dinesh_copy.cal_spi()	
-	dinesh.search_student("Naveen paul")
-	with open(os.getcwd()+"/student.txt","wb") as f:
-		pickle.dump(Student.stud,f)		
+# 	dinesh=Student(46,"Dinesh","8490086339","25-10-1997","Male",[45,55,60,70])
+# 	dinesh_copy=Student(47,"Naveen paul","8490086639","25-10-1997","Male",[5,55,60,70])
+# 	print(dinesh.get_age())
+# 	print(average.cal_avg(dinesh,dinesh.marks))
+# 	dinesh.cal_spi()
+# 	dinesh_copy.cal_spi()	
+# 	dinesh.search_student("Naveen paul")
+# 	with open(os.getcwd()+"/student.txt","wb") as f:
+# 		pickle.dump(Student.stud,f)		
 	
-	with open(os.getcwd()+"/student.txt","rb") as f:		
-		obj=pickle.load(f)		
-		for i in obj:
-			i.show()
-	write_pass(Student.stud)		
-except Exception as e:
-	print(e)
+# 	with open(os.getcwd()+"/student.txt","rb") as f:		
+# 		obj=pickle.load(f)		
+# 		for i in obj:
+# 			i.show()
+# 	write_pass(Student.stud)		
+# except Exception as e:
+# 	print(e)
 	
-finally:	
-	pass
+# finally:	
+# 	pass
 
 
 ##8
 
+
+class myexcept(Exception):
+	
+	def __init__(self,msg="Interest rate of savings account should be greater than current account"):					
+		self.msg=msg	
+		super().__init__(self.msg)	
+
+	def __str__(self):
+		return f"{self.msg}"
+
+class Account:
+
+	d={}
+
+	def __init__(self,name,date_open,balance,account,interest):
+		self.name=name
+		self.date_open=date_open
+		self.balance=balance
+		self.account=account
+		self.interest=interest
+		
+
+	def deposit(self,amount):
+		self.balance+=amount
+		return self.balance
+
+	
+	def withdraw(self,amount):
+		if self.balance>=amount:
+			self.balance-=amount
+			return self.balance
+		return f"Withraw amount {amount} is more than available balance {self.balance}"	
+
+	def get_monthly_int(self):
+
+		mon_interest=(self.interest/100)/12
+		return mon_interest*self.balance
+		
+	def add_int(self,add):
+	
+		self.interest+=add
+		return self.interest
+
+	def get_interest_dict(self):
+		return self.d
+
+	def show_details(self):
+		print(f"Name : {self.name} , Account Opened :{self.date_open}, Balance : {self.balance}, Accound Number :  {self.account}, Interest : {self.interest}")
+
+class SavingsAccount(Account):
+
+	def __init__(self,name,dop,bal,acc,mon_int):
+
+		d=super().get_interest_dict()
+		
+		if len(d.keys())>0:
+			if "int_current" in d.keys():
+				if mon_int>d["int_current"]:
+					d["int_savings"]=mon_int
+					super().__init__(name,dop,bal,acc,mon_int)
+				else:
+					raise myexcept	
+			else:
+				d["int_savings"]=mon_int
+				super().__init__(name,dop,bal,acc,mon_int)
+		else:					
+			super().__init__(name,dop,bal,acc,mon_int)
+			d["save_interest"]=mon_int
+
+	
+	
+
+class CurrentAccount(Account):
+
+	def __init__(self,name,dop,bal,acc,mon_int):
+
+		d=super().get_interest_dict()
+
+		if len(d.keys())>0:
+			if "int_savings" in d.keys():
+				if mon_int<d["int_savings"]:
+					d["int_current"]=mon_int
+					super().__init__(name,dop,bal,acc,mon_int)
+				else:					
+					raise myexcept	
+			else:
+				d["int_current"]=mon_int
+				super().__init__(self,name,dop,bal,acc,mon_int)
+		else:
+			d["int_current"]=mon_int					
+			super().__init__(name,dop,bal,acc,mon_int)
+			
+	
+	def withdraw(self,amount):
+
+		if (self.balance-amount)>1000:
+			super().withdraw(amount)
+			return
+		print(f"Minimum account balance should be Rs. 1000 and available balance is {self.balance}")
+
+			
+
+def createaccount(name,dop,bal,acc,mon_int,ac_type):	
+
+	if ac_type == 1:
+		return SavingsAccount(name,dop,bal,acc,mon_int)
+	else:
+		return CurrentAccount(name,dop,bal,acc,mon_int)
+
+
+def find_user(name,data):
+
+	for i in data:
+		if i.name.strip().lower() == name.strip().lower():
+			return i
+	return None
+
+
+accounts=[]
+
+try:
+	while True:
+
+		print("1 . Create Account")
+		print("2 . Deposit")
+		print("3 . Withraw")
+		print("4 . Check balance")
+		print("5 . Check Monthly Interest")
+		print("6 . Exit")
+
+		print("Enter Your Choice : ")
+		ch=int(input())
+
+		if ch == 1:
+			print("Type of account( 1 - Savings/ 2 - Current) : ",end="\n")
+			ac=int(input())
+			name=input("Enter A/c user name : ")
+			bal=int(input("Enter Initial balance amount : "))
+			acc=int(input("Enter A/c Number : "))
+			interest=float(input("Enter Rate of interest : "))
+
+
+			if ac == 1:
+				
+				a=createaccount(name,datetime.date.today(),bal,acc,interest,1)
+				a.show_details()
+				accounts.append(a)
+
+			else:
+				print("Inside current")
+				b=createaccount(name,datetime.date.today(),bal,acc,interest,2)
+				b.show_details()
+				accounts.append(b)				
+		
+		elif ch == 2:
+
+			amount=float(input("Enter deposit amount : "))
+			name=input("Enter account holder name : ")
+			user=find_user(name,accounts)
+			if user != None:
+				user.deposit(amount)
+			else:
+				print("{} account doesn't exists.".format(name))
+
+		elif ch == 3:
+
+			amount=float(input("Enter withdraw amount : "))
+			name=input("Enter account holder name : ")
+			user=find_user(name,accounts)
+			if user != None:
+				user.withdraw(amount)
+			else:
+
+				print("{} account doesn't exists.".format(name))			
+		elif ch == 4:
+			
+			name=input("Enter account holder name : ")
+			user=find_user(name,accounts)
+			if user != None:
+				print(f"Name : {user.name}, Account : {user.account}, Balance : {user.balance} ")
+			else:
+				print("{} account doesn't exists.".format(name))			
+
+		elif ch == 5:
+
+			name=input("Enter accound holder name : ")
+			user=find_user(name,accounts)
+
+			if user != None:
+				print(user.get_monthly_int())
+			else:
+				print("{} account doesn't exists.".format(name))			
+	
+		elif ch == 6:
+			break
+					
+
+
+
+except Exception as e:
+	print(e)
 
