@@ -950,18 +950,191 @@ import sys,average,pickle,random,os,datetime,re
 
 
 
+##13
+
+# def createPlayer():
+
+# 	c=int(input("Enter player code : "))
+# 	p_name=input("Enter player Name : ")
+# 	p_country=input("Enter player Country : ")
+# 	runs=int(input("Enter player  total runs : "))
+
+# 	if c!=None and p_name!=None and p_country!=None and runs!=None:
+
+# 		return [c,p_name,p_country,runs]
+	
+# 	return None	
+
+# def loadall():
+#     with open(os.getcwd()+"/players.dat", "rb") as f:
+#         while True:
+#             try:
+#                 yield pickle.load(f)
+#             except EOFError:
+#                 break	
 
 
+# def regex_search():
+
+# 	with open(os.getcwd()+"/players.dat","rb") as f:	
+
+# 		data=loadall()
+		
+# 		for i in data:
+
+# 			x=re.findall("^A",i[1])
+
+# 			if x:
+				
+# 				print(f"Code : {i[0]}, Name : {i[1]}, Country : {i[2]}, Total Runs : {i[3]} ")
+
+		
+
+# def country(name):
+
+# 	with open(os.getcwd()+"/players.dat","rb") as f:	
+
+# 		data=loadall()
+# 		count=0
+
+# 		for i in data:
+
+# 			if name.strip().lower() == i[2].strip().lower():
+
+# 				count+=1
+# 				print(f"Code : {i[0]}, Name : {i[1]}, Country : {i[2]}, Total Runs : {i[3]} ")		
+
+# 		print(f"Total Number of Players in {name} country is {count}")		
+
+
+# try:
+
+# 	while True:
+
+# 		print("1. Add Player")
+# 		print("2. Display player details whose name startswith \'A\'")
+# 		print("3. Search player by country")
+# 		print("4. Add player record to the end of file")
+# 		print("5. Quit")
+
+
+# 		ch=int(input("Enter your choice : "))
+
+# 		if ch == 1:
+
+# 			with open(os.getcwd()+"/players.dat","ab") as f:
+# 				pickle.dump(createPlayer(),f)
+
+# 		elif ch == 2:
+
+# 			regex_search()
+						
+# 		elif ch == 3:
+							
+# 			c=input("Enter country name : ")	
+# 			country(c)
+
+# 		elif ch == 4:
+
+# 			player=createPlayer()
 			
+# 			with open(os.getcwd()+"/players.dat","ab") as f:
+# 				pickle.dump(player,f)
+
+# 		elif ch == 5:
+
+# 			break		
+
+# 		else:
+
+# 			break	
 
 
+# except Exception as e:
+# 	print(e)
 
 
+##14
+
+# def loadall(file="game.dat"):
+#     with open(os.getcwd()+"/"+file, "rb") as f:
+#         while True:
+#             try:
+#                 yield pickle.load(f)
+#             except EOFError:
+#                 break	
+
+# def createGame():
+	
+# 	g_name=input("Enter Name of the game : ")	
+# 	p=int(input("Enter Number of participants : "))
+
+# 	if g_name!=None and p!=None:
+
+# 		return [g_name,p]
+	
+# 	return None	
+
+# def copy_game():
+
+# 	with open(os.getcwd()+"/basket.dat","wb") as f:
+
+# 		data=loadall()		
+# 		for i in data:		
+# 			if i[0].strip().lower() == "Basket Ball".strip().lower():				
+# 				pickle.dump(i,f)
+
+	
 
 
+		
+# def print_data(data):
+
+# 	for i in data:
+# 		print(f"Game : {i[0]}, Participants : {i[1]}")
+
+# try:
+
+# 	while True:
+
+# 		print("1. Add Game")
+# 		print("2. Display player details whose name startswith \'A\'")
+# 		print("3. Search player by country")
+# 		print("4. Add player record to the end of file")
+# 		print("5. Quit")
 
 
+# 		ch=int(input("Enter your choice : "))
 
+# 		if ch == 1:
+
+# 			with open(os.getcwd()+"/game.dat","ab") as f:
+
+# 				pickle.dump(createGame(),f)
+# 				data=loadall()
+# 				print_data(data)
+
+# 		elif ch == 2:
+			
+# 			copy_game()
+# 			data=loadall("basket.dat")			
+# 			print_data(data)
+# 			# for i in data:
+# 			# 	print(f"Game : {i[0]}, Participants : {i[1]}")
+
+# 		elif ch == 3:
+		
+# 			break
+
+# 		else:
+		
+# 			break
+
+# except Exception as e:
+	
+# 	print(e)						
+
+##15 
 
 
 
