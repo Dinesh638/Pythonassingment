@@ -246,204 +246,258 @@ import sys,average,pickle,random,os,datetime
 ##8
 
 
-class myexcept(Exception):
+# class myexcept(Exception):
 	
-	def __init__(self,msg="Interest rate of savings account should be greater than current account"):					
-		self.msg=msg	
-		super().__init__(self.msg)	
+# 	def __init__(self,msg="Interest rate of savings account should be greater than current account"):					
+# 		self.msg=msg	
+# 		super().__init__(self.msg)	
 
-	def __str__(self):
-		return f"{self.msg}"
+# 	def __str__(self):
+# 		return f"{self.msg}"
 
-class Account:
+# class Account:
 
-	d={}
+# 	d={}
 
-	def __init__(self,name,date_open,balance,account,interest):
-		self.name=name
-		self.date_open=date_open
-		self.balance=balance
-		self.account=account
-		self.interest=interest
+# 	def __init__(self,name,date_open,balance,account,interest):
+# 		self.name=name
+# 		self.date_open=date_open
+# 		self.balance=balance
+# 		self.account=account
+# 		self.interest=interest
 		
 
-	def deposit(self,amount):
-		self.balance+=amount
-		return self.balance
+# 	def deposit(self,amount):
+# 		self.balance+=amount
+# 		return self.balance
 
 	
-	def withdraw(self,amount):
-		if self.balance>=amount:
-			self.balance-=amount
-			return self.balance
-		return f"Withraw amount {amount} is more than available balance {self.balance}"	
+# 	def withdraw(self,amount):
+# 		if self.balance>=amount:
+# 			self.balance-=amount
+# 			return self.balance
+# 		return f"Withraw amount {amount} is more than available balance {self.balance}"	
 
-	def get_monthly_int(self):
+# 	def get_monthly_int(self):
 
-		mon_interest=(self.interest/100)/12
-		return mon_interest*self.balance
+# 		mon_interest=(self.interest/100)/12
+# 		return mon_interest*self.balance
 		
-	def add_int(self,add):
+# 	def add_int(self,add):
 	
-		self.interest+=add
-		return self.interest
+# 		self.interest+=add
+# 		return self.interest
 
-	def get_interest_dict(self):
-		return self.d
+# 	def get_interest_dict(self):
+# 		return self.d
 
-	def show_details(self):
-		print(f"Name : {self.name} , Account Opened :{self.date_open}, Balance : {self.balance}, Accound Number :  {self.account}, Interest : {self.interest}")
+# 	def show_details(self):
+# 		print(f"Name : {self.name} , Account Opened :{self.date_open}, Balance : {self.balance}, Accound Number :  {self.account}, Interest : {self.interest}")
 
-class SavingsAccount(Account):
+# class SavingsAccount(Account):
 
-	def __init__(self,name,dop,bal,acc,mon_int):
+# 	def __init__(self,name,dop,bal,acc,mon_int):
 
-		d=super().get_interest_dict()
+# 		d=super().get_interest_dict()
 		
-		if len(d.keys())>0:
-			if "int_current" in d.keys():
-				if mon_int>d["int_current"]:
-					d["int_savings"]=mon_int
-					super().__init__(name,dop,bal,acc,mon_int)
-				else:
-					raise myexcept	
-			else:
-				d["int_savings"]=mon_int
-				super().__init__(name,dop,bal,acc,mon_int)
-		else:					
-			super().__init__(name,dop,bal,acc,mon_int)
-			d["save_interest"]=mon_int
+# 		if len(d.keys())>0:
+# 			if "int_current" in d.keys():
+# 				if mon_int>d["int_current"]:
+# 					d["int_savings"]=mon_int
+# 					super().__init__(name,dop,bal,acc,mon_int)
+# 				else:
+# 					raise myexcept	
+# 			else:
+# 				d["int_savings"]=mon_int
+# 				super().__init__(name,dop,bal,acc,mon_int)
+# 		else:					
+# 			super().__init__(name,dop,bal,acc,mon_int)
+# 			d["save_interest"]=mon_int
 
 	
 	
 
-class CurrentAccount(Account):
+# class CurrentAccount(Account):
 
-	def __init__(self,name,dop,bal,acc,mon_int):
+# 	def __init__(self,name,dop,bal,acc,mon_int):
 
-		d=super().get_interest_dict()
+# 		d=super().get_interest_dict()
 
-		if len(d.keys())>0:
-			if "int_savings" in d.keys():
-				if mon_int<d["int_savings"]:
-					d["int_current"]=mon_int
-					super().__init__(name,dop,bal,acc,mon_int)
-				else:					
-					raise myexcept	
-			else:
-				d["int_current"]=mon_int
-				super().__init__(self,name,dop,bal,acc,mon_int)
-		else:
-			d["int_current"]=mon_int					
-			super().__init__(name,dop,bal,acc,mon_int)
+# 		if len(d.keys())>0:
+# 			if "int_savings" in d.keys():
+# 				if mon_int<d["int_savings"]:
+# 					d["int_current"]=mon_int
+# 					super().__init__(name,dop,bal,acc,mon_int)
+# 				else:					
+# 					raise myexcept	
+# 			else:
+# 				d["int_current"]=mon_int
+# 				super().__init__(self,name,dop,bal,acc,mon_int)
+# 		else:
+# 			d["int_current"]=mon_int					
+# 			super().__init__(name,dop,bal,acc,mon_int)
 			
 	
-	def withdraw(self,amount):
+# 	def withdraw(self,amount):
 
-		if (self.balance-amount)>1000:
-			super().withdraw(amount)
-			return
-		print(f"Minimum account balance should be Rs. 1000 and available balance is {self.balance}")
+# 		if (self.balance-amount)>1000:
+# 			super().withdraw(amount)
+# 			return
+# 		print(f"Minimum account balance should be Rs. 1000 and available balance is {self.balance}")
 
 			
 
-def createaccount(name,dop,bal,acc,mon_int,ac_type):	
+# def createaccount(name,dop,bal,acc,mon_int,ac_type):	
 
-	if ac_type == 1:
-		return SavingsAccount(name,dop,bal,acc,mon_int)
-	else:
-		return CurrentAccount(name,dop,bal,acc,mon_int)
-
-
-def find_user(name,data):
-
-	for i in data:
-		if i.name.strip().lower() == name.strip().lower():
-			return i
-	return None
+# 	if ac_type == 1:
+# 		return SavingsAccount(name,dop,bal,acc,mon_int)
+# 	else:
+# 		return CurrentAccount(name,dop,bal,acc,mon_int)
 
 
-accounts=[]
+# def find_user(name,data):
 
-try:
-	while True:
-
-		print("1 . Create Account")
-		print("2 . Deposit")
-		print("3 . Withraw")
-		print("4 . Check balance")
-		print("5 . Check Monthly Interest")
-		print("6 . Exit")
-
-		print("Enter Your Choice : ")
-		ch=int(input())
-
-		if ch == 1:
-			print("Type of account( 1 - Savings/ 2 - Current) : ",end="\n")
-			ac=int(input())
-			name=input("Enter A/c user name : ")
-			bal=int(input("Enter Initial balance amount : "))
-			acc=int(input("Enter A/c Number : "))
-			interest=float(input("Enter Rate of interest : "))
+# 	for i in data:
+# 		if i.name.strip().lower() == name.strip().lower():
+# 			return i
+# 	return None
 
 
-			if ac == 1:
+# accounts=[]
+
+# try:
+# 	while True:
+
+# 		print("1 . Create Account")
+# 		print("2 . Deposit")
+# 		print("3 . Withraw")
+# 		print("4 . Check balance")
+# 		print("5 . Check Monthly Interest")
+# 		print("6 . Exit")
+
+# 		print("Enter Your Choice : ")
+# 		ch=int(input())
+
+# 		if ch == 1:
+# 			print("Type of account( 1 - Savings/ 2 - Current) : ",end="\n")
+# 			ac=int(input())
+# 			name=input("Enter A/c user name : ")
+# 			bal=int(input("Enter Initial balance amount : "))
+# 			acc=int(input("Enter A/c Number : "))
+# 			interest=float(input("Enter Rate of interest : "))
+
+
+# 			if ac == 1:
 				
-				a=createaccount(name,datetime.date.today(),bal,acc,interest,1)
-				a.show_details()
-				accounts.append(a)
+# 				a=createaccount(name,datetime.date.today(),bal,acc,interest,1)
+# 				a.show_details()
+# 				accounts.append(a)
 
-			else:
-				print("Inside current")
-				b=createaccount(name,datetime.date.today(),bal,acc,interest,2)
-				b.show_details()
-				accounts.append(b)				
+# 			else:
+# 				print("Inside current")
+# 				b=createaccount(name,datetime.date.today(),bal,acc,interest,2)
+# 				b.show_details()
+# 				accounts.append(b)				
 		
-		elif ch == 2:
+# 		elif ch == 2:
 
-			amount=float(input("Enter deposit amount : "))
-			name=input("Enter account holder name : ")
-			user=find_user(name,accounts)
-			if user != None:
-				user.deposit(amount)
-			else:
-				print("{} account doesn't exists.".format(name))
+# 			amount=float(input("Enter deposit amount : "))
+# 			name=input("Enter account holder name : ")
+# 			user=find_user(name,accounts)
+# 			if user != None:
+# 				user.deposit(amount)
+# 			else:
+# 				print("{} account doesn't exists.".format(name))
 
-		elif ch == 3:
+# 		elif ch == 3:
 
-			amount=float(input("Enter withdraw amount : "))
-			name=input("Enter account holder name : ")
-			user=find_user(name,accounts)
-			if user != None:
-				user.withdraw(amount)
-			else:
+# 			amount=float(input("Enter withdraw amount : "))
+# 			name=input("Enter account holder name : ")
+# 			user=find_user(name,accounts)
+# 			if user != None:
+# 				user.withdraw(amount)
+# 			else:
 
-				print("{} account doesn't exists.".format(name))			
-		elif ch == 4:
+# 				print("{} account doesn't exists.".format(name))			
+# 		elif ch == 4:
 			
-			name=input("Enter account holder name : ")
-			user=find_user(name,accounts)
-			if user != None:
-				print(f"Name : {user.name}, Account : {user.account}, Balance : {user.balance} ")
-			else:
-				print("{} account doesn't exists.".format(name))			
+# 			name=input("Enter account holder name : ")
+# 			user=find_user(name,accounts)
+# 			if user != None:
+# 				print(f"Name : {user.name}, Account : {user.account}, Balance : {user.balance} ")
+# 			else:
+# 				print("{} account doesn't exists.".format(name))			
 
-		elif ch == 5:
+# 		elif ch == 5:
 
-			name=input("Enter accound holder name : ")
-			user=find_user(name,accounts)
+# 			name=input("Enter accound holder name : ")
+# 			user=find_user(name,accounts)
 
-			if user != None:
-				print(user.get_monthly_int())
-			else:
-				print("{} account doesn't exists.".format(name))			
+# 			if user != None:
+# 				print(user.get_monthly_int())
+# 			else:
+# 				print("{} account doesn't exists.".format(name))			
 	
-		elif ch == 6:
-			break
+# 		elif ch == 6:
+# 			break
 					
 
 
 
-except Exception as e:
-	print(e)
+# except Exception as e:
+# 	print(e)
+
+##9
+
+# class myexcept(Exception):
+	
+# 	def __init__(self,name,msg="doesn't exists in the following directory"):					
+# 		self.msg=msg	
+# 		self.name=name
+# 		super().__init__(self.msg)	
+
+# 	def __str__(self):
+# 		return f"File {self.name} {self.msg} {os.getcwd()}"
+
+# try:
+# 	if len(sys.argv)>=2:
+# 		file=sys.argv[1]+".txt"
+# 		if not (os.path.exists(file)):
+# 				raise myexcept(file)
+# 		else:	
+# 			l_count=0
+# 			w_count=0
+# 			ch_count=0	
+# 			avg_ch_l=0
+# 			avg_ch_w=0
+# 			avg_w_l=0
+# 			with open(file,"r") as f:
+				
+# 				data=f.read().split("\n")				
+# 				for i in data:
+# 					words=i.strip().split()
+# 					l_count+=1
+# 					w_count+=len(words)						
+# 					for j in words:
+# 						for k in j:
+# 							ch_count+=1
+				
+# 				avg_ch_l=ch_count//l_count
+# 				avg_w_l=w_count//l_count
+# 				avg_ch_w=ch_count//w_count			
+
+# 				print(f"Total Number of lines : {l_count} , number of words : {w_count}, number of characters : {ch_count}")	
+# 				print(f"Average number of characters per line : {avg_ch_l}")
+# 				print(f"Average number of words per line : {avg_w_l}")
+# 				print(f"Average number of characters per words : {avg_ch_w}")
+
+# 	else:
+# 		print(f"Please provide the file name in command line")
+
+# except Exception as e:
+# 	print(e)		
+
+
+##10
+
 
