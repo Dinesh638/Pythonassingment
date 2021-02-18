@@ -854,6 +854,103 @@ import sys,average,pickle,random,os,datetime,re
 # 	sys.exit()	
 
 
+##12
+
+# class Book():
+
+# 	def __init__(self,num,name,auth,price):
+
+# 		self.num=num
+# 		self.name=name
+# 		self.auth=auth
+# 		self.price=price
+
+# 	def display(self):
+# 		print("Id : {}, Name : {}, Author : {}, Price : {}".format(self.num,self.name,self.auth,self.price))
+
+
+# def createBook(num,name,auth,price):
+
+# 	if num!=None and name!=None and auth!=None and price!=None:
+
+# 		return Book(num,name,auth,price)
+
+# 	return None	
+
+# def createFile():
+
+# 	num=int(input("Enter Book number : "))
+# 	name=input("Enter Book Name : ")
+# 	auth=input("Enter Author Name : ")
+# 	price=float(input("Enter Book price : "))
+
+# 	if num!=None and name!=None and auth!=None and price!=None:
+
+# 		with open(os.getcwd()+"/Book.dat","ab") as f:
+
+# 			pickle.dump(createBook(num,name,auth,price),f)
+
+# 		return f"Book :  {name}, Author : {auth} has been successfully added to the file {f} ."	
+
+# 	return "Book not to File the student.dat"	
+
+
+# def loadall():
+#     with open(os.getcwd()+"/Book.dat", "rb") as f:
+#         while True:
+#             try:
+#                 yield pickle.load(f)
+#             except EOFError:
+#                 break	
+
+# def countRec(author):
+
+# 	data=loadall()
+# 	auth_count=0
+	
+# 	for i in data:
+		
+# 		if i.auth.strip().lower() == author.strip().lower():
+			
+# 			auth_count+=1
+	
+# 	return	f"Author : {author} was given {auth_count} number of books."
+
+	
+# try:
+	
+# 	while True:
+
+# 		print("1 . Input record and add to Book.dat file")
+# 		print("2 . To count number of books written by specific author")
+# 		print("3 . Quit")
+
+# 		ch=int(input("Enter your choice : "))
+
+# 		if ch == 1:
+
+# 			print(createFile())
+
+# 		elif ch == 2:
+
+# 			name=input("Enter author name : ")
+# 			print(countRec(name))
+
+# 		elif ch == 3:
+
+# 			break
+
+# 		else:
+
+# 			break	
+				
+
+# except Exception as e:
+# 	print(e)
+
+
+
+
 
 			
 
