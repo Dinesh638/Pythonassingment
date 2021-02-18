@@ -511,6 +511,25 @@ import sys,average,pickle,random,os,datetime,re
 # 		return f"File {self.name} {self.msg} {os.getcwd()}"
 
 
+# class InvalidUserException(Exception):
+	
+# 	def __init__(self,name,msg="Invalid User"):					
+# 		self.msg=msg	
+# 		self.name=name
+# 		super().__init__(self.msg)	
+
+# 	def __str__(self):
+# 		return f"{self.name} {self.msg}"
+
+# class InvalidPasswordException(Exception):
+	
+# 	def __init__(self,msg="Invalid Password"):					
+# 		self.msg=msg	
+# 		super().__init__(self.msg)	
+
+# 	def __str__(self):
+# 		return f"{self.msg}"
+
 # class User():
 
 # 	def __init__(self,name,password,balance=0):
@@ -538,6 +557,7 @@ import sys,average,pickle,random,os,datetime,re
 # 		return f"Available balance is {self.bal}"
 
 		
+		
 # try:
 	
 # 	if len(sys.argv)>=2:
@@ -562,9 +582,14 @@ import sys,average,pickle,random,os,datetime,re
 # 		file="Student.dat"
 # 		dummy_user=User("Peter","peter123")
 # 		dummy_user_new=User("Pankaj","pankaj345")
+# 		print("Default Users..")		
 # 		obj=[]
 # 		obj.append(dummy_user)
 # 		obj.append(dummy_user_new)
+
+# 		for k in obj:
+			
+# 			print("Name : {}, Password : {}".format(k.name,k.password))
 
 # 		with open(file,"wb") as f:
 # 			pickle.dump(obj,f)	 
@@ -632,11 +657,11 @@ import sys,average,pickle,random,os,datetime,re
 
 # 				else:
 
-# 					raise Exception("Password dosn't match..")	
+# 					raise InvalidPasswordException()	
 
 # 			else:
 
-# 				raise Exception(" User not found")	
+# 				raise InvalidUserException(name)	
 
 # 	except Exception as e:
 # 		print(e)			
@@ -645,188 +670,188 @@ import sys,average,pickle,random,os,datetime,re
 
 
 
-class Library():
+# class Library():
 
 	
 
-	def __init__(self,name):
+# 	def __init__(self,name):
 
-		self.name=name
-		self.books=[]		
+# 		self.name=name
+# 		self.books=[]		
 		
 		
 
-	def add_book(self,book):
+# 	def add_book(self,book):
 
-		for i in self.books:
+# 		for i in self.books:
 
-			if book.id == i.id:
+# 			if book.id == i.id:
 
-				return f" {book.id} already exists "
+# 				return f" {book.id} already exists "
 			
 				
-		self.books.append(book)
+# 		self.books.append(book)
 		
-		return f"Id : {book.id} => Book : {book.name}  had successfully added."
+# 		return f"Id : {book.id} => Book : {book.name}  had successfully added."
 
 	
-	def issue_book(self,b_id):
+# 	def issue_book(self,b_id):
 
-		for i in self.books:
+# 		for i in self.books:
 
-			if b_id == i.id:
+# 			if b_id == i.id:
 
-				if i.no >=1:
+# 				if i.no >=1:
 
-					i.no-=1	
-					return f"{i.name} was successfully issued "
+# 					i.no-=1	
+# 					return f"{i.name} was successfully issued "
 
-				else:
+# 				else:
 					
-					raise Exception(f"{i.name} Book was out of stock {i.no}")
+# 					raise Exception(f"{i.name} Book was out of stock {i.no}")
 					
 		
-		return f"{b_id} doesn't exists in library."
+# 		return f"{b_id} doesn't exists in library."
 
-	def deposit_book(self,b_id):
+# 	def deposit_book(self,b_id):
 
-		for i in self.books:
+# 		for i in self.books:
 
-			if b_id == i.id:
+# 			if b_id == i.id:
 				
-					i.no+=1	
-					return f"{i.name} was successfully Deposited "									
+# 					i.no+=1	
+# 					return f"{i.name} was successfully Deposited "									
 		
-		return f"{b_id} doesn't exists in library."	
+# 		return f"{b_id} doesn't exists in library."	
 
-	def set_copy(self,n,b_id):
+# 	def set_copy(self,n,b_id):
 
-		for i in self.books:
+# 		for i in self.books:
 
-			if b_id == i.id:	
+# 			if b_id == i.id:	
 
-				i.no=n	
-				return f"Book id :  {i.id} has {i.no} available number of stocks."	
+# 				i.no=n	
+# 				return f"Book id :  {i.id} has {i.no} available number of stocks."	
 
-		return f"Book id : {b_id} doesn't exists in library"		
+# 		return f"Book id : {b_id} doesn't exists in library"		
 
-	def search_book(self,a_name):
+# 	def search_book(self,a_name):
 
-		for i in self.books:
+# 		for i in self.books:
 
-			if a_name == i.name:
+# 			if a_name == i.name:
 
-				return f"Book id : {i.id}, Author name : {i.author}, Book : {i.name} , In Stock : {i.no}"
+# 				return f"Book id : {i.id}, Author name : {i.author}, Book : {i.name} , In Stock : {i.no}"
 
-	def search_author(self,a_author):
+# 	def search_author(self,a_author):
 
-		for i in self.books:
+# 		for i in self.books:
 
-			a=re.findall("^"+a_author,i.author)			
-			if a:	
-				return f"Book id : {i.id}, Author name : {i.author}, Book : {i.name} , In Stock : {i.no}"				
-			else:
-				return f"author : {a_author} doesn't exists"	
+# 			a=re.findall("^"+a_author,i.author)			
+# 			if a:	
+# 				return f"Book id : {i.id}, Author name : {i.author}, Book : {i.name} , In Stock : {i.no}"				
+# 			else:
+# 				return f"author : {a_author} doesn't exists"	
 
-	def add_record(self,file):
+# 	def add_record(self,file):
 		
-		with open(os.getcwd()+"/"+file,"wb") as f:			
-			pickle.dump(self.books,f)
-			return f"Records added to {file}"
+# 		with open(os.getcwd()+"/"+file,"wb") as f:			
+# 			pickle.dump(self.books,f)
+# 			return f"Records added to {file}"
 
-class Book(Library):
+# class Book(Library):
 
-	def __init__(self,b_id,name,author,no_copy=1):
+# 	def __init__(self,b_id,name,author,no_copy=1):
 
-		self.id=b_id
-		self.name=name
-		self.author=author
-		self.no=no_copy
+# 		self.id=b_id
+# 		self.name=name
+# 		self.author=author
+# 		self.no=no_copy
 
 
-	def add_book(self,book):
+# 	def add_book(self,book):
 
-		if book != None:
+# 		if book != None:
 
-			return super().add_book(book)
+# 			return super().add_book(book)
 
-		return f"please provide book details"	
+# 		return f"please provide book details"	
 
-def create_book(num=None,name=None,author=None):
+# def create_book(num=None,name=None,author=None):
 
-	if num != None and name!=None and author!=None:
-		return Book(num,name,author)
+# 	if num != None and name!=None and author!=None:
+# 		return Book(num,name,author)
 
-try:
+# try:
 
-	roman_lib=Library("Roman Library")
+# 	roman_lib=Library("Roman Library")
 
-	while True:
+# 	while True:
 
-		print("1 . Add New Book")
-		print("2 . Issue")
-		print("3 . Deposit")
-		print("4 . Set number of copies : ")
-		print("5 . Search book using author name :")
-		print("6 . Search book using book name :")
-		print("7 . Add records in file :")
-		print("8 . Exit")
+# 		print("1 . Add New Book")
+# 		print("2 . Issue")
+# 		print("3 . Deposit")
+# 		print("4 . Set number of copies : ")
+# 		print("5 . Search book using author name :")
+# 		print("6 . Search book using book name :")
+# 		print("7 . Add records in file :")
+# 		print("8 . Exit")
 
-		ch=int(input("Enter your choice : "))
+# 		ch=int(input("Enter your choice : "))
 
-		if ch == 1:
+# 		if ch == 1:
 
-			num=int(input("Enter book Id : "))
-			name=input("Enter book name : ")
-			a_name=input("Enter author name : ")
-			print(roman_lib.add_book(create_book(num,name,a_name)))
+# 			num=int(input("Enter book Id : "))
+# 			name=input("Enter book name : ")
+# 			a_name=input("Enter author name : ")
+# 			print(roman_lib.add_book(create_book(num,name,a_name)))
 
-		elif ch == 2:
+# 		elif ch == 2:
 
-			num=int(input("Enter book Id : "))
-			print(roman_lib.issue_book(num))
+# 			num=int(input("Enter book Id : "))
+# 			print(roman_lib.issue_book(num))
 
-		elif ch == 3:
+# 		elif ch == 3:
 
-			num=int(input("Enter book Id : "))
-			print(roman_lib.deposit_book(num))
+# 			num=int(input("Enter book Id : "))
+# 			print(roman_lib.deposit_book(num))
 
-		elif ch == 4:
+# 		elif ch == 4:
 
-			num=int(input("Enter number of copies to stock up : "))	
-			b_id=int(input("Enter book Id : "))	
-			print(roman_lib.set_copy(num,b_id))
+# 			num=int(input("Enter number of copies to stock up : "))	
+# 			b_id=int(input("Enter book Id : "))	
+# 			print(roman_lib.set_copy(num,b_id))
 
-		elif ch == 5:
+# 		elif ch == 5:
 
-			name=input("Enter author name : ")
-			print(roman_lib.search_author(name))
+# 			name=input("Enter author name : ")
+# 			print(roman_lib.search_author(name))
 
-		elif ch == 6:
+# 		elif ch == 6:
 
-			name=input("Enter book name : ")	
-			print(roman_lib.search_book(name))
+# 			name=input("Enter book name : ")	
+# 			print(roman_lib.search_book(name))
 
-		elif ch == 7:
+# 		elif ch == 7:
 
-			file=input("Enter file name ")	
-			roman_lib.add_record(file)
+# 			file=input("Enter file name ")	
+# 			roman_lib.add_record(file)
 
-		elif ch == 8:
+# 		elif ch == 8:
 
-			break
+# 			break
 
-		else:
+# 		else:
 
-			break
+# 			break
 
-except Exception as e:
+# except Exception as e:
 
-	print(e)			
+# 	print(e)			
 
-finally:
+# finally:
 
-	sys.exit()	
+# 	sys.exit()	
 
 
 
@@ -842,13 +867,7 @@ finally:
 
 
 
-# national=Library("Ambedkar library")  
-# be_happy=Book(12,"be_happy","David")
-# rich_dad=Book(11,"rich_dad","john")
-# print(national.add_book(be_happy))
-# print(national.add_book(rich_dad))
-# national.add_record("nat_lib.dat")
-# print(national.search_author("Dav"))
+
 
 
 
