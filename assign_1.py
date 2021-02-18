@@ -1,4 +1,4 @@
-import sys,average,pickle,random,os,datetime
+import sys,average,pickle,random,os,datetime,re
 
 #####Assing-3
 ##1
@@ -499,5 +499,356 @@ import sys,average,pickle,random,os,datetime
 
 
 ##10
+
+# class myexcept(Exception):
+	
+# 	def __init__(self,name,msg="doesn't exists in the following directory"):					
+# 		self.msg=msg	
+# 		self.name=name
+# 		super().__init__(self.msg)	
+
+# 	def __str__(self):
+# 		return f"File {self.name} {self.msg} {os.getcwd()}"
+
+
+# class User():
+
+# 	def __init__(self,name,password,balance=0):
+	
+# 		self.name=name
+# 		self.password=password
+# 		self.bal=balance
+
+# 	def withdraw(self,amount):
+
+# 		if self.bal>amount:
+			
+# 			self.bal-=amount
+# 			return f"Available balance is {self.bal}"
+
+# 		return f"Insufficient balance {self.bal}"	
+
+# 	def deposit(self,amount):
+
+# 		self.bal+=amount
+# 		return f"Available balance is {self.bal}"
+
+# 	def get_bal(self):
+
+# 		return f"Available balance is {self.bal}"
+
+		
+# try:
+	
+# 	if len(sys.argv)>=2:
+
+# 		file=sys.argv[1]
+
+# 		if not (os.path.exists(file)):
+			
+# 			raise myexcept(file)
+# 	else:
+						
+# 		raise Exception("Provide file name in command line")	
+			
+# except Exception as e:
+# 	print(e)      
+
+# finally:
+
+# 	try:	
+
+# 		print("Default file name was student.dat will be created..")
+# 		file="Student.dat"
+# 		dummy_user=User("Peter","peter123")
+# 		dummy_user_new=User("Pankaj","pankaj345")
+# 		obj=[]
+# 		obj.append(dummy_user)
+# 		obj.append(dummy_user_new)
+
+# 		with open(file,"wb") as f:
+# 			pickle.dump(obj,f)	 
+
+# 		name=input("Enter username : ")	
+
+# 		with open(file,"rb") as f:
+
+# 			objects=pickle.load(f)
+# 			flag=False
+
+# 			for i in objects:
+
+# 				if name.strip().lower() == i.name.strip().lower():
+					
+# 					flag=True
+			
+# 			if flag:	
+
+# 				password=input("Enter your four digit PIN NO. :  ")
+# 				flag_p=False
+# 				user=None
+# 				for j in objects:
+
+# 					if password.strip().lower() == j.password.strip().lower():
+
+# 						flag_p=True
+# 						user=j
+# 				if flag_p:
+						
+# 						# print("password matched!!!")
+
+# 						while True:
+							
+# 							print("1 . Deposit")
+# 							print("2 . Withraw")
+# 							print("3 . Check balance")
+# 							print("4 . Quit")
+
+# 							ch=int(input("Select Option : "))
+
+# 							if ch == 1:
+
+# 								amount=float(input("Enter deposit amount :"))
+# 								print(user.deposit(amount))
+
+# 							elif ch == 2:
+
+# 								amount=float(input("Enter withdraw amount :"))
+# 								print(user.withdraw(amount))
+
+# 							elif ch == 3:
+								
+# 								print(user.get_bal())	
+
+# 							elif ch == 4:
+
+# 								break
+
+# 							else:
+
+# 								break	
+							
+
+
+# 				else:
+
+# 					raise Exception("Password dosn't match..")	
+
+# 			else:
+
+# 				raise Exception(" User not found")	
+
+# 	except Exception as e:
+# 		print(e)			
+
+##11
+
+
+
+class Library():
+
+	
+
+	def __init__(self,name):
+
+		self.name=name
+		self.books=[]		
+		
+		
+
+	def add_book(self,book):
+
+		for i in self.books:
+
+			if book.id == i.id:
+
+				return f" {book.id} already exists "
+			
+				
+		self.books.append(book)
+		
+		return f"Id : {book.id} => Book : {book.name}  had successfully added."
+
+	
+	def issue_book(self,b_id):
+
+		for i in self.books:
+
+			if b_id == i.id:
+
+				if i.no >=1:
+
+					i.no-=1	
+					return f"{i.name} was successfully issued "
+
+				else:
+					
+					raise Exception(f"{i.name} Book was out of stock {i.no}")
+					
+		
+		return f"{b_id} doesn't exists in library."
+
+	def deposit_book(self,b_id):
+
+		for i in self.books:
+
+			if b_id == i.id:
+				
+					i.no+=1	
+					return f"{i.name} was successfully Deposited "									
+		
+		return f"{b_id} doesn't exists in library."	
+
+	def set_copy(self,n,b_id):
+
+		for i in self.books:
+
+			if b_id == i.id:	
+
+				i.no=n	
+				return f"Book id :  {i.id} has {i.no} available number of stocks."	
+
+		return f"Book id : {b_id} doesn't exists in library"		
+
+	def search_book(self,a_name):
+
+		for i in self.books:
+
+			if a_name == i.name:
+
+				return f"Book id : {i.id}, Author name : {i.author}, Book : {i.name} , In Stock : {i.no}"
+
+	def search_author(self,a_author):
+
+		for i in self.books:
+
+			a=re.findall("^"+a_author,i.author)			
+			if a:	
+				return f"Book id : {i.id}, Author name : {i.author}, Book : {i.name} , In Stock : {i.no}"				
+			else:
+				return f"author : {a_author} doesn't exists"	
+
+	def add_record(self,file):
+		
+		with open(os.getcwd()+"/"+file,"wb") as f:			
+			pickle.dump(self.books,f)
+			return f"Records added to {file}"
+
+class Book(Library):
+
+	def __init__(self,b_id,name,author,no_copy=1):
+
+		self.id=b_id
+		self.name=name
+		self.author=author
+		self.no=no_copy
+
+
+	def add_book(self,book):
+
+		if book != None:
+
+			return super().add_book(book)
+
+		return f"please provide book details"	
+
+def create_book(num=None,name=None,author=None):
+
+	if num != None and name!=None and author!=None:
+		return Book(num,name,author)
+
+try:
+
+	roman_lib=Library("Roman Library")
+
+	while True:
+
+		print("1 . Add New Book")
+		print("2 . Issue")
+		print("3 . Deposit")
+		print("4 . Set number of copies : ")
+		print("5 . Search book using author name :")
+		print("6 . Search book using book name :")
+		print("7 . Add records in file :")
+		print("8 . Exit")
+
+		ch=int(input("Enter your choice : "))
+
+		if ch == 1:
+
+			num=int(input("Enter book Id : "))
+			name=input("Enter book name : ")
+			a_name=input("Enter author name : ")
+			print(roman_lib.add_book(create_book(num,name,a_name)))
+
+		elif ch == 2:
+
+			num=int(input("Enter book Id : "))
+			print(roman_lib.issue_book(num))
+
+		elif ch == 3:
+
+			num=int(input("Enter book Id : "))
+			print(roman_lib.deposit_book(num))
+
+		elif ch == 4:
+
+			num=int(input("Enter number of copies to stock up : "))	
+			b_id=int(input("Enter book Id : "))	
+			print(roman_lib.set_copy(num,b_id))
+
+		elif ch == 5:
+
+			name=input("Enter author name : ")
+			print(roman_lib.search_author(name))
+
+		elif ch == 6:
+
+			name=input("Enter book name : ")	
+			print(roman_lib.search_book(name))
+
+		elif ch == 7:
+
+			file=input("Enter file name ")	
+			roman_lib.add_record(file)
+
+		elif ch == 8:
+
+			break
+
+		else:
+
+			break
+
+except Exception as e:
+
+	print(e)			
+
+finally:
+
+	sys.exit()	
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+# national=Library("Ambedkar library")  
+# be_happy=Book(12,"be_happy","David")
+# rich_dad=Book(11,"rich_dad","john")
+# print(national.add_book(be_happy))
+# print(national.add_book(rich_dad))
+# national.add_record("nat_lib.dat")
+# print(national.search_author("Dav"))
+
 
 
