@@ -1077,7 +1077,7 @@ import sys,average,pickle,random,os,datetime,re
 
 # def copy_game():
 
-# 	with open(os.getcwd()+"/basket.dat","wb") as f:
+# 	with open(os.getcwd()+"/basket.dat","ab") as f:
 
 # 		data=loadall()		
 # 		for i in data:		
@@ -1136,8 +1136,73 @@ import sys,average,pickle,random,os,datetime,re
 
 ##15 
 
+# def loadall(file="Student.dat"):
+#     with open(os.getcwd()+"/"+file, "rb") as f:
+#         while True:
+#             try:
+#                 yield pickle.load(f)
+#             except EOFError:
+#                 break	
+
+# def createStudent():
+	
+	
+# 	number=int(input("Enter Admission Number : "))
+# 	name=input("Enter Student Name : ")	
+# 	p=float(input("Enter Percentage of Student : "))	
+
+# 	if name!=None and p!=None and number!=None:
+
+# 		return [number,name,p]
+	
+# 	return None	
 
 
+# def check_stud():
+
+# 	with open(os.getcwd()+"/Student.dat","rb") as f:
+
+# 		data=loadall()
+# 		count=0
+
+# 		for i in data:
+
+# 			if i[2]>75:
+
+# 				print("Name : {}, Admission Number : {}, Percentage : {}".format(i[1],i[0],i[2]))
+# 				count+=1
+
+# 		print(f" Total Number of Students those who scored above 75% was {count}")	
 
 
+# try:
 
+# 	while True:
+
+# 		print("1. Add Student")
+# 		print("2. Check Student above 75% ")
+# 		print("3. Quit")
+		
+# 		ch=int(input("Enter your choice : "))
+
+# 		if ch == 1:
+
+# 			with open(os.getcwd()+"/Student.dat","ab") as f:
+
+# 				pickle.dump(createStudent(),f)
+
+# 		elif ch == 2:
+
+# 			check_stud()		
+
+# 		elif ch == 3:
+
+# 			break
+
+# 		else:
+
+# 			break
+
+# except Exception as e:
+
+# 	print(e)
