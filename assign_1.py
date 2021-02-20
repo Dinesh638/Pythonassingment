@@ -5,31 +5,44 @@ import sys,average,pickle,random,os,datetime,re
 # file=open(sys.argv[1]+".txt","r")
 # l_count=0
 # f=file.read().split("\n")
-# for i in f:
-# 	# print(i)	
-# 	print("=======")
-# 	print(i)
+# for i in f:	
 # 	if not i.startswith("T"):			
 # 		l_count+=1
 # print(f" Number of lines in {file.name} is {l_count}")
 
-##2
+# ##2
+
+# class myexcept(Exception):
+	
+# 	def __init__(self,num,msg="is not prime number"):
+# 		self.msg=msg
+# 		self.num=num	
+# 		super().__init__(self.msg)	
+
+# 	def __str__(self):
+# 		return f"{self.num} {self.msg}"
 
 # def check_prime(num):
-# 	if num>1:
-# 		for i in range(2,num):
-# 			if num%i == 0:
-# 				return f"{num} is not prime number"
+# 	try:
+# 		if num>1:
+# 			for i in range(2,num):
+# 				if num%i == 0:
+# 					raise myexcept(num)	
+# 			else:
+# 				print(f"{num} is  prime number")
 # 		else:
-# 			return f"{num} is not prime number"
-# 	else:
-# 		return f"{num} is not prime number"		
-					
+# 			raise myexcept(num)	
+# 	except Exception as e:
+
+# 		print(e)
+
+	
 # file=open(sys.argv[1]+".txt","r")
 # for i in file:	
-# 	print(check_prime(int(i)))
+# 	check_prime(int(i))
 
-##3
+
+# ##3
 
 # class myexcept(Exception):
 	
@@ -54,7 +67,7 @@ import sys,average,pickle,random,os,datetime,re
 
 
 
-##4
+# ##4
 
 # def hash_display(file):
 # 	file=file.read().strip()
@@ -71,7 +84,7 @@ import sys,average,pickle,random,os,datetime,re
 # 	print(e)	
 
 
-##5
+# ##5
 
 # def find_max(a,b):
 # 	if a>b:
@@ -99,11 +112,9 @@ import sys,average,pickle,random,os,datetime,re
 # 	f_write.write(f"Total : {sum}")		
 # except Exception as e:
 # 	print(e)
-# finally:
-# 	f_write.close()	
-# 	f.close()
 
-##7
+
+# ##7
 
 # class myexcept(Exception):
 	
@@ -243,7 +254,7 @@ import sys,average,pickle,random,os,datetime,re
 # 	pass
 
 
-##8
+# ##8
 
 
 # class myexcept(Exception):
@@ -447,7 +458,7 @@ import sys,average,pickle,random,os,datetime,re
 # except Exception as e:
 # 	print(e)
 
-##9
+# ##9
 
 # class myexcept(Exception):
 	
@@ -498,7 +509,7 @@ import sys,average,pickle,random,os,datetime,re
 # 	print(e)		
 
 
-##10
+# ##10
 
 # class myexcept(Exception):
 	
@@ -666,7 +677,7 @@ import sys,average,pickle,random,os,datetime,re
 # 	except Exception as e:
 # 		print(e)			
 
-##11
+# ##11
 
 
 
@@ -854,7 +865,7 @@ import sys,average,pickle,random,os,datetime,re
 # 	sys.exit()	
 
 
-##12
+# ##12
 
 # class Book():
 
@@ -950,7 +961,7 @@ import sys,average,pickle,random,os,datetime,re
 
 
 
-##13
+# ##13
 
 # def createPlayer():
 
@@ -1054,7 +1065,7 @@ import sys,average,pickle,random,os,datetime,re
 # 	print(e)
 
 
-##14
+# ##14
 
 # def loadall(file="game.dat"):
 #     with open(os.getcwd()+"/"+file, "rb") as f:
@@ -1077,7 +1088,7 @@ import sys,average,pickle,random,os,datetime,re
 
 # def copy_game():
 
-# 	with open(os.getcwd()+"/basket.dat","ab") as f:
+# 	with open(os.getcwd()+"/basket.dat","wb") as f:
 
 # 		data=loadall()		
 # 		for i in data:		
@@ -1098,17 +1109,15 @@ import sys,average,pickle,random,os,datetime,re
 # 	while True:
 
 # 		print("1. Add Game")
-# 		print("2. Display player details whose name startswith \'A\'")
-# 		print("3. Search player by country")
-# 		print("4. Add player record to the end of file")
-# 		print("5. Quit")
+# 		print("2. copy game")		
+# 		print("3. Quit")
 
 
 # 		ch=int(input("Enter your choice : "))
 
 # 		if ch == 1:
 
-# 			with open(os.getcwd()+"/game.dat","ab") as f:
+# 			with open(os.getcwd()+"/game.dat","wb") as f:
 
 # 				pickle.dump(createGame(),f)
 # 				data=loadall()
@@ -1134,7 +1143,7 @@ import sys,average,pickle,random,os,datetime,re
 	
 # 	print(e)						
 
-##15 
+# ##15 
 
 # def loadall(file="Student.dat"):
 #     with open(os.getcwd()+"/"+file, "rb") as f:
@@ -1182,13 +1191,13 @@ import sys,average,pickle,random,os,datetime,re
 # 		print("1. Add Student")
 # 		print("2. Check Student above 75% ")
 # 		print("3. Quit")
-		
+
 # 		ch=int(input("Enter your choice : "))
 
 # 		if ch == 1:
 
 # 			with open(os.getcwd()+"/Student.dat","ab") as f:
-
+				
 # 				pickle.dump(createStudent(),f)
 
 # 		elif ch == 2:
